@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const responses = require('./models/responses');
 
 
 
@@ -27,6 +28,19 @@ app.get('/greeting/:name', (req, res) =>{
 app.get('/tip/:total/:tipPercentage', (req, res) =>{
 	res.send('Your tip is: ' + (req.params.total/100) * req.params.tipPercentage )
 })
+
+
+
+//Magic 8 Ball
+
+
+
+app.get('/magic/:question', (req, res) =>{
+	let random = Math.floor(Math.random() * (20));
+	res.send(req.params.question + '? ' + responses[random])
+
+})
+
 
 
 
